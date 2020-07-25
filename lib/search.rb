@@ -10,12 +10,8 @@ option = menu.show
 
 while option != EXIT
   menu.clear
-  if not menu.check_invalidation_option(option)
-    menu.response_consult(option)
-  end
+  menu.response_consult(option) unless menu.check_invalidation_option(option)
   option = menu.show
 end
 
-if option == EXIT
-  puts "\nObrigada por acessar a nossa plataforma de pesquisa :)\n".green
-end
+puts "\nObrigada por acessar a nossa plataforma de pesquisa :)\n".green if option == EXIT

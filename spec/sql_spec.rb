@@ -4,7 +4,7 @@ require 'spec_helper'
 require 'sqlite3'
 
 describe Sql do
-  db = SQLite3::Database.open "db/database.db"
+  SQLite3::Database.open 'db/database.db'
 
   context('') do
     it '' do

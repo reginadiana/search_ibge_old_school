@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'colorize'
 
 # Options
@@ -7,6 +9,7 @@ COMMON_NAMES_IN_COUNTY = 2
 FREQUETY_NAMES = 3
 MOST_USED_DECADE = 4
 
+# Menu e tratamento dos dados digitados pelo usuario
 class Menu
   def welcome
     puts 'Bem-vindo a plataforma de pesquisa de nomes IBGE!'.green
@@ -25,10 +28,9 @@ class Menu
   end
 
   def response_consult(option)
-    if option == FREQUETY_NAMES
-      insert_names
-      
-    end
+    return unless option == FREQUETY_NAMES
+
+    insert_names
   end
 
   def insert_uf
@@ -60,10 +62,10 @@ class Menu
   end
 
   def check_invalidation_option(option)
-    if option < 0 or option > 4
-      puts "\nPor favor, digite uma opção válida\n".red
-      true
-    end
+    return unless option.negative? || option > 4
+
+    puts "\nPor favor, digite uma opção válida\n".red
+    true
   end
 
   def decorate
