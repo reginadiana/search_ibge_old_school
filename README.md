@@ -27,7 +27,7 @@
 ## Descrição do Projeto
 
 <p align="justify">
-  O projeto desenvolvido foi baseado na aplicação [Nomes do Brasil](https://censo2010.ibge.gov.br/nomes/#/search/response/235), para consultar, a partir de um nome e sexo (opcional) a frenquencia de uso de um nome ver gráficamente a porcentagem que ele representa em cada um dos estados do Brasil. 
+  O projeto desenvolvido foi baseado na aplicação <a href="https://censo2010.ibge.gov.br/nomes/#/search/response/235)">Nomes do Brasil</a>, para consultar, a partir de um nome e sexo (opcional) a frenquencia de uso de um nome ver gráficamente a porcentagem que ele representa em cada um dos estados do Brasil. 
   
   A proposta **desta** aplicação é ampliar as possíbilidades de pesquisa, sendo possível:
   
