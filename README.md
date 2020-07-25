@@ -68,6 +68,10 @@
 
 :books: &nbsp; [**Rubocop**](https://github.com/rubocop-hq/rubocop) para verificar a formatação do código, analisando o uso correto de identação, uso de aspas duplas e simples, espaços e linhas desnecessárias, etc.
 
+:books: &nbsp; [**Colorize**](https://github.com/fazibear/colorize) para deixar o menu mais intuitivo e melhorar a usabilidade. 
+
+:books: &nbsp; [**Faker**](https://github.com/faker-ruby/faker/blob/master/doc/default/address.md) para gerar nomes de municipios e Uf's aleatórios nos testes.
+
 ## Pré-Requisitos :package:
 
 Algumas dependencias devem ser instaladas antes de configurar o projeto:
