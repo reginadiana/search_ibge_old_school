@@ -8,6 +8,8 @@
   <img src="http://img.shields.io/static/v1?label=STATUS&message=progress&color=orange&style=for-the-badge">
 </p>
 
+:memo: [**TASKS (Kanban)**](https://github.com/reginadiana/search_ibge_old_school/projects/1">Tasks)
+
 <hr>
 
 ## Tópicos
