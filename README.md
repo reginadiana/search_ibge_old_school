@@ -33,7 +33,7 @@
   
   A proposta **desta** aplicação é ampliar as possíbilidades de pesquisa, sendo possível:
   
-:bar_chart: A partir de uma **UF**, encontrar um ranking com os nomes mais usadados para os sexos feminino, masculino e ambos.
+:bar_chart: A partir de uma **UF**, encontrar um ranking **(top 20)** com os nomes mais usadados para os sexos feminino, masculino e ambos.
 
 :bar_chart: Idem ao tópico 1, pesquisando a partir de um **municipio**. 
 
