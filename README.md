@@ -27,8 +27,33 @@
 ## Descrição do Projeto
 
 <p align="justify">
-    
+  O projeto desenvolvido foi baseado na aplicação [Nomes do Brasil](https://censo2010.ibge.gov.br/nomes/#/search/response/235), para consultar, a partir de um nome e sexo (opcional) a frenquencia de uso de um nome ver gráficamente a porcentagem que ele representa em cada um dos estados do Brasil. 
+  
+  A proposta **desta** aplicação é ampliar as possíbilidades de pesquisa, sendo possível:
+  
+:bar_chart: A partir de uma **UF**, encontrar um ranking com os nomes mais usadados para os sexos feminino e masculino e ambos (geral).
+
+:bar_chart: Idem ao tópico 1, pesquisando a partir de um **municipio**. 
+
+:bar_chart: A partir de um nome, exibir uma tabela com a frequencia com que o nome foi usado ao longo de décadas. 
+
+:bar_chart: Em todas as tabelas de pesquisa, mostrar uma coluna o percentual que um nome representa em relação a população total de uma UF ou municipio. 
+
 </p>
+
+## Principais tasks do projeto
+
+:pushpin: Consultas na [API]()
+
+:pushpin: Manipulação de arquivos csv e banco de dados 
+
+:pushpin: Lógica para tratar dos dados entre API e arquivos csv
+
+:pushpin: Organização do código
+
+:pushpin: TDD
+
+:pushpin: Criação de menus interativos, pensando em usabilidade e entrega de valor
 
 ## Gems instaladas
 
