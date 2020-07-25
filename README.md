@@ -43,7 +43,7 @@
 
 :bar_chart: Em todas as tabelas de pesquisa, mostrar uma coluna o percentual que um nome representa em relação a população total de uma UF ou municipio. 
 
-:bar_chart: **Pesquisa bonus** Mostrar um ranking com os nomes que mais cresceram após a década de 90. 
+:bar_chart: **Pesquisa bonus** Mostrar um ranking com os nomes que mais usados em alguma década.
 </p>
 
 ## Principais tasks do projeto
