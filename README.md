@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="" alt="Logo"/>
+  <img src="https://user-images.githubusercontent.com/46378210/88458218-e6a65a00-ce62-11ea-96c2-c5f6faa2dd0a.png" alt="Logo"/>
 </p>
 
 <p align="center">
@@ -7,6 +7,8 @@
   <img src="http://img.shields.io/static/v1?label=Ruby&message=2.6.3&color=red&style=for-the-badge&logo=ruby"/>
   <img src="http://img.shields.io/static/v1?label=STATUS&message=progress&color=orange&style=for-the-badge">
 </p>
+
+<hr>
 
 ## Tópicos
 
