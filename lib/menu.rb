@@ -1,6 +1,9 @@
 # frozen_string_literal: true
 
 require 'colorize'
+require 'sqlite3'
+require_relative 'sql'
+require_relative 'api'
 
 # Options
 EXIT = 0
@@ -11,6 +14,7 @@ MOST_USED_DECADE = 4
 
 # Menu e tratamento dos dados digitados pelo usuario
 class Menu
+
   def welcome
     puts 'Bem-vindo a plataforma de pesquisa de nomes IBGE!'.green
   end
@@ -28,9 +32,26 @@ class Menu
   end
 
   def response_consult(option)
+    return unless option == COMMON_NAMES_IN_UF
+
+    show_avalible_ufs
+    decorate
+    response = sql.call_query(insert_uf, sql.query_info_federatives, db)
+    
+    puts "Dados para o estado de: #{response[2]}".yellow
+    api.most_used_female(response[1])
+
     return unless option == FREQUETY_NAMES
 
     insert_names
+  end
+
+  def show_avalible_ufs
+    ufs = db.execute(sql.query_all_federatives)
+    puts "Código - Estado - População"
+    ufs.each do |uf|
+      puts "#{uf[1]} - #{uf[2]} - #{uf[3]}"
+    end
   end
 
   def insert_uf
@@ -58,7 +79,7 @@ class Menu
   end
 
   def search_not_found
-    puts 'Não foi possível encontrar os dados, tente novamente'.red
+    puts 'Não foi possível encontrar os dados, digite um código ou nome válidos'.red
   end
 
   def check_invalidation_option(option)
@@ -66,10 +87,6 @@ class Menu
 
     puts "\nPor favor, digite uma opção válida\n".red
     true
-  end
-
-  def decorate
-    puts '-' * 60
   end
 
   def clear
@@ -83,5 +100,23 @@ class Menu
 
   def read_number
     gets.to_i
+  end
+  
+  private
+
+  def api
+    API.new
+  end
+
+  def sql
+    Sql.new
+  end
+
+  def db
+    SQLite3::Database.open 'db/database.db'
+  end
+
+  def decorate
+    puts '-' * 60
   end
 end
