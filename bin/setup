@@ -5,5 +5,51 @@ puts '== Installing dependencies =='
 system 'gem install bundler --conservative'
 system('bundle check') || system('bundle install')
 
+require 'sqlite3'
+
 puts "\n== Cheking if database exist =="
-puts "\n== Projeto configurado =) =="
+
+if File.exist?('db/database.db')
+  puts "\n== Database already exist, you can start searchs :) =="
+else
+  puts "\n== Preparing database: Create Tables =="
+  begin
+      federative_csv = File.readlines(Dir.pwd + '/data/new_federatives.csv')
+      counties_csv = File.readlines(Dir.pwd + '/data/new_counties.csv')
+
+      db = SQLite3::Database.open 'db/database.db'
+      db.execute <<-SQL
+      CREATE TABLE Federatives(
+        Status varchar(2),
+        Code int,
+        Title varchar(30),
+        Population int
+      );
+      SQL
+
+      db.execute <<-SQL
+      CREATE TABLE Counties(
+        Status varchar(2),
+        Code int,
+        Title varchar(30),
+        Population int,
+        UF varchar(2)
+     );
+      SQL
+
+      federative_csv.each do |dados|
+        dados = dados.split(',')
+        db.execute 'INSERT INTO Federatives VALUES ( ?, ?, ?, ? )', dados
+      end
+
+      counties_csv.each do |dados|
+        dados = dados.split(',')
+        db.execute 'INSERT INTO Counties VALUES ( ?, ?, ?, ?, ? )', dados
+      end
+  rescue SQLite3::Exception => e
+    puts e
+  ensure
+    puts "\n== We finish to preparate database :) =="
+    db&.close
+    end
+end
