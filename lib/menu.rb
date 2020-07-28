@@ -33,17 +33,22 @@ class Menu
 
   def response_consult(option)
     return unless option == COMMON_NAMES_IN_UF
+    
+    common_names_in_uf
 
+    return unless option == FREQUETY_NAMES
+
+    insert_names
+  end
+
+  def common_names_in_uf
     show_avalible_ufs
     decorate
     response = sql.call_query(insert_uf, sql.query_info_federatives, db)
     
     puts "Dados para o estado de: #{response[2]}".yellow
-    api.call_most_used(response[1])
-
-    return unless option == FREQUETY_NAMES
-
-    insert_names
+    puts "População total do estado: #{response[3]}".yellow
+    api.call_most_used(response[1], response[3])
   end
 
   def show_avalible_ufs

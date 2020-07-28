@@ -13,28 +13,34 @@ class API
     JSON.parse(response.body, symbolize_names: true)
   end
 
-  def show_most_used(response)
+  def show_most_used(response, total_population)
+    
     response.each do |items|
-      puts 'Ranking - Nome'.yellow
+      puts 'Ranking - Nome - Frequencia - Representavidade no Estado'.yellow
       items[:res].each do |item|
-        puts "#{item[:ranking]}° #{item[:nome]}"
+        porcentage = calc_porcentage(item[:frequencia], total_population)
+        puts "#{item[:ranking]}° #{item[:nome]} - #{item[:frequencia]} - #{porcentage} %"
       end
     end
   end
 
-  def most_used(uf, sex)
-    url = url_most_used(uf, sex)
-    response = requisition(url)
-    show_most_used(response)
+  def calc_porcentage(frequence, total_population)
+    (frequence.to_f/total_population.to_f).round(4)
   end
 
-  def call_most_used(uf)
+  def most_used(uf, sex, total_population)
+    url = url_most_used(uf, sex)
+    response = requisition(url)
+    show_most_used(response, total_population)
+  end
+
+  def call_most_used(uf, total_population)
     puts 'Sexo Feminino'.blue
-    most_used(uf, 'f')
+    most_used(uf, 'f', total_population)
     puts 'Sexo Masculino'.blue
-    most_used(uf, 'm')
+    most_used(uf, 'm', total_population)
     puts 'Ambos os sexos'.blue
-    most_used(uf, 'both')
+    most_used(uf, 'both', total_population)
   end
 
   private
