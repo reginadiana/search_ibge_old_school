@@ -39,7 +39,7 @@ class Menu
     response = sql.call_query(insert_uf, sql.query_info_federatives, db)
     
     puts "Dados para o estado de: #{response[2]}".yellow
-    api.most_used_female(response[1])
+    api.call_most_used(response[1])
 
     return unless option == FREQUETY_NAMES
 

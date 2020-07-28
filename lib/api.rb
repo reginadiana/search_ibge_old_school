@@ -13,21 +13,37 @@ class API
     JSON.parse(response.body, symbolize_names: true)
   end
 
-  def most_used_female(uf)
-    url = url_base+"censos/nomes/ranking?localidade=#{uf}&sexo=f"
-    response = requisition(url)
-
+  def show_most_used(response)
     response.each do |items|
       puts 'Ranking - Nome'.yellow
       items[:res].each do |item|
         puts "#{item[:ranking]}° #{item[:nome]}"
       end
-    end 
+    end
+  end
+
+  def most_used(uf, sex)
+    url = url_most_used(uf, sex)
+    response = requisition(url)
+    show_most_used(response)
+  end
+
+  def call_most_used(uf)
+    puts 'Sexo Feminino'.blue
+    most_used(uf, 'f')
+    puts 'Sexo Masculino'.blue
+    most_used(uf, 'm')
+    puts 'Ambos os sexos'.blue
+    most_used(uf, 'both')
   end
 
   private
   
   def url_base
     "https://servicodados.ibge.gov.br/api/v2/"
+  end
+
+  def url_most_used(uf, sex)
+    url_base+"censos/nomes/ranking?localidade=#{uf}&sexo=#{sex}"
   end
 end
