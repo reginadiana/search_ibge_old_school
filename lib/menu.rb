@@ -41,6 +41,7 @@ class Menu
       decorate
       common_names(input.insert_county, sql.query_info_counties)
     else option == FREQUENTY_NAMES
+      show_avalible_decades
       api.call_frequence_names(input.insert_names)
     end
   end
@@ -59,6 +60,19 @@ class Menu
     ufs.each do |uf|
       puts "#{uf[1]} - #{uf[2]} - #{uf[3]}"
     end
+  end
+
+  def show_avalible_decades
+    decades = db.execute(sql.query_all_decades)
+    puts "Década/Ano - Número de Habitantes".yellow
+    decades.each do |decade|
+      puts "#{decade[0]}: #{decade[1]}"
+    end
+    puts "\n"
+  end
+
+  def call_population(decade)
+    sql.call_query(decade, sql.query_some_population_by_decade, db)[0]
   end
 
   def search_not_found

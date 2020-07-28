@@ -25,6 +25,11 @@ class Input
     separate_names(read_input)
   end
 
+  def insert_decade
+    print "\nDigite uma década (exemplo: '50') ou ano (exemplo: '1950'):\n"
+    read_number
+  end
+
   private
 
   def separate_names(input)

@@ -6,6 +6,7 @@ system 'gem install bundler --conservative'
 system('bundle check') || system('bundle install')
 
 require 'sqlite3'
+require 'colorize'
 
 puts "\n== Cheking if database exist =="
 
@@ -16,6 +17,7 @@ else
   begin
       federative_csv = File.readlines(Dir.pwd + '/data/new_federatives.csv')
       counties_csv = File.readlines(Dir.pwd + '/data/new_counties.csv')
+      population_csv = File.readlines(Dir.pwd + '/data/population.csv')
 
       db = SQLite3::Database.open 'db/database.db'
       db.execute <<-SQL
@@ -37,15 +39,33 @@ else
      );
       SQL
 
+      db.execute <<-SQL
+      CREATE TABLE Population(
+        Year int,
+        Amount int
+     );
+      SQL
+
       federative_csv.each do |dados|
         dados = dados.split(',')
         db.execute 'INSERT INTO Federatives VALUES ( ?, ?, ?, ? )', dados
       end
 
+      puts "\n== Table Federative was build with success ==".green
+
       counties_csv.each do |dados|
         dados = dados.split(',')
         db.execute 'INSERT INTO Counties VALUES ( ?, ?, ?, ?, ? )', dados
       end
+
+      puts "\n== Table Counties was build with success ==".green
+
+      population_csv.each do |dados|
+        dados = dados.split(',')
+        db.execute 'INSERT INTO Population VALUES ( ?, ? )', dados
+      end
+
+      puts "\n== Table Population was build with success ==".green
   rescue SQLite3::Exception => e
     puts e
   ensure

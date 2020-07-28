@@ -26,6 +26,14 @@ class Sql
     read_file('query_population_counties.sql')
   end
 
+  def query_all_decades
+    read_file('query_all_decades.sql')
+  end
+
+  def query_some_population_by_decade
+    read_file('query_some_population_by_decade.sql')
+  end
+
   def call_query(parm, query, db)
     query = db.prepare query
     response = query.execute parm
