@@ -44,6 +44,7 @@ class Menu
 
   def common_names(region, query)
     response = sql.call_query(region, query, db)
+    return search_not_found unless response
 
     puts "Dados para a região de: #{response[2]}".yellow
     puts "População total: #{response[3]}".yellow
@@ -74,7 +75,8 @@ class Menu
   end
 
   def search_not_found
-    puts 'Não foi possível encontrar os dados, digite um código ou nome válidos'.red
+    puts 'Não foi possível encontrar os dados'.red
+    puts 'Por favor, digite um código ou nome válidos'.red
   end
 
   def check_invalidation_option(option)
