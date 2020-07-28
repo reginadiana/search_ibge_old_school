@@ -2,7 +2,7 @@
 
 require 'faraday'
 require 'json'
-require 'colorize'
+require_relative 'api_response'
 
 class API
   def requisition(url)
@@ -13,37 +13,33 @@ class API
     JSON.parse(response.body, symbolize_names: true)
   end
 
-  def show_most_used(response, total_population)
-    
-    response.each do |items|
-      puts 'Ranking - Nome - Frequencia - Representavidade no Estado'.yellow
-      items[:res].each do |item|
-        porcentage = calc_porcentage(item[:frequencia], total_population)
-        puts "#{item[:ranking]}° #{item[:nome]} - #{item[:frequencia]} - #{porcentage} %"
-      end
-    end
+  def call_most_used(uf, total_population)
+    puts 'Ranking - Nome - Frequência - Representavidade no Estado'.green
+    puts 'Sexo Feminino'.green
+    most_used(uf, 'f', total_population)
+    puts 'Sexo Masculino'.green
+    most_used(uf, 'm', total_population)
+    puts 'Ambos os sexos'.green
+    most_used(uf, 'both', total_population)
   end
 
-  def calc_porcentage(frequence, total_population)
-    (frequence.to_f/total_population.to_f).round(4)
+  def call_frequence_names(names)
+    url = url_frequence(names)
+    response = requisition(url)
+    response_api.show_frequence_names(response)
   end
 
   def most_used(uf, sex, total_population)
     url = url_most_used(uf, sex)
     response = requisition(url)
-    show_most_used(response, total_population)
-  end
-
-  def call_most_used(uf, total_population)
-    puts 'Sexo Feminino'.blue
-    most_used(uf, 'f', total_population)
-    puts 'Sexo Masculino'.blue
-    most_used(uf, 'm', total_population)
-    puts 'Ambos os sexos'.blue
-    most_used(uf, 'both', total_population)
+    response_api.show_most_used(response, total_population)
   end
 
   private
+
+  def response_api 
+    APIResponse.new
+  end 
   
   def url_base
     "https://servicodados.ibge.gov.br/api/v2/"
@@ -51,5 +47,9 @@ class API
 
   def url_most_used(uf, sex)
     url_base+"censos/nomes/ranking?localidade=#{uf}&sexo=#{sex}"
+  end
+
+  def url_frequence(names)
+    url_base+"censos/nomes/#{names}"
   end
 end

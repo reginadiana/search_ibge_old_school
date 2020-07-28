@@ -9,7 +9,6 @@ menu.welcome
 option = menu.show
 
 while option != EXIT
-  menu.clear
   menu.response_consult(option) unless menu.check_invalidation_option(option)
   option = menu.show
 end

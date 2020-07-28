@@ -4,15 +4,16 @@ require 'colorize'
 require 'sqlite3'
 require_relative 'sql'
 require_relative 'api'
+require_relative 'input'
 
 # Options
 EXIT = 0
 COMMON_NAMES_IN_UF = 1
 COMMON_NAMES_IN_COUNTY = 2
-FREQUETY_NAMES = 3
+FREQUENTY_NAMES = 3
 MOST_USED_DECADE = 4
 
-# Menu e tratamento dos dados digitados pelo usuario
+# Show options to user
 class Menu
 
   def welcome
@@ -23,31 +24,32 @@ class Menu
     print "\nMenu:\n".yellow
     puts "[#{COMMON_NAMES_IN_UF}] Ver nomes mais comuns de uma Unidade Federativa (UF)".yellow
     puts "[#{COMMON_NAMES_IN_COUNTY}] Ver nomes mais comuns de um municipio".yellow
-    puts "[#{FREQUETY_NAMES}] Ver frequência de um nome ao longo dos anos".yellow
+    puts "[#{FREQUENTY_NAMES}] Ver frequência de um nome ao longo dos anos".yellow
     puts "[#{MOST_USED_DECADE}] Ver nomes mais usados em uma década".yellow
     puts "[#{EXIT}] Sair".yellow
 
     print 'Escolha uma opção: '
-    read_number
+    input.read_number
   end
 
   def response_consult(option)
-    return unless option == COMMON_NAMES_IN_UF
-    
-    common_names_in_uf
-
-    return unless option == FREQUETY_NAMES
-
-    insert_names
+    if option == COMMON_NAMES_IN_UF
+      show_avalible_ufs
+      decorate
+      common_names(input.insert_uf, sql.query_info_federatives)
+    elsif option == COMMON_NAMES_IN_COUNTY
+      decorate
+      common_names(input.insert_county, sql.query_info_counties)
+    else option == FREQUENTY_NAMES
+      api.call_frequence_names(input.insert_names)
+    end
   end
 
-  def common_names_in_uf
-    show_avalible_ufs
-    decorate
-    response = sql.call_query(insert_uf, sql.query_info_federatives, db)
+  def common_names(region, query)
+    response = sql.call_query(region, query, db)
     
-    puts "Dados para o estado de: #{response[2]}".yellow
-    puts "População total do estado: #{response[3]}".yellow
+    puts "Dados para a região de: #{response[2]}".yellow
+    puts "População total: #{response[3]}".yellow
     api.call_most_used(response[1], response[3])
   end
 
@@ -56,30 +58,6 @@ class Menu
     puts "Código - Estado - População"
     ufs.each do |uf|
       puts "#{uf[1]} - #{uf[2]} - #{uf[3]}"
-    end
-  end
-
-  def insert_uf
-    print 'Digite o código da UF:'
-    read_input
-  end
-
-  def insert_county
-    print 'Digite o código do Municipio:'
-    read_input
-  end
-
-  def insert_names
-    print "Digite um nome ou vários separados por vírgulas, exemplo:\n"
-    print "Para um nome, digite: Diana\n"
-    print "Para vários nomes, digite: Diana, João, Camilo, Luiz\n"
-    separate_names(read_input)
-  end
-
-  def separate_names(input)
-    names = input.split(',')
-    names.each do |name|
-      puts name.split(' ')
     end
   end
 
@@ -93,32 +71,23 @@ class Menu
     puts "\nPor favor, digite uma opção válida\n".red
     true
   end
-
-  def clear
-    system('clear')
-    puts
-  end
-
-  def read_input
-    gets.chomp
-  end
-
-  def read_number
-    gets.to_i
-  end
   
   private
 
-  def api
-    API.new
+  def db
+    SQLite3::Database.open 'db/database.db'
   end
 
   def sql
     Sql.new
   end
 
-  def db
-    SQLite3::Database.open 'db/database.db'
+  def api
+    API.new
+  end
+
+  def input
+    Input.new
   end
 
   def decorate
