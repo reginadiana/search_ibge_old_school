@@ -1,11 +1,5 @@
 # frozen_string_literal: true
 
-require 'colorize'
-require 'sqlite3'
-require_relative 'sql'
-require_relative 'api'
-require_relative 'input'
-
 # Options
 EXIT = 0
 COMMON_NAMES_IN_UF = 1
@@ -15,7 +9,6 @@ MOST_USED_DECADE = 4
 
 # Show options to user
 class Menu
-
   def welcome
     puts 'Bem-vindo a plataforma de pesquisa de nomes IBGE!'.green
   end
@@ -48,7 +41,7 @@ class Menu
 
   def common_names(region, query)
     response = sql.call_query(region, query, db)
-    
+
     puts "Dados para a região de: #{response[2]}".yellow
     puts "População total: #{response[3]}".yellow
     api.call_most_used(response[1], response[3])
@@ -56,7 +49,7 @@ class Menu
 
   def show_avalible_ufs
     ufs = db.execute(sql.query_all_federatives)
-    puts "Código - Estado - População"
+    puts 'Código - Estado - População'
     ufs.each do |uf|
       puts "#{uf[1]} - #{uf[2]} - #{uf[3]}"
     end
@@ -64,7 +57,7 @@ class Menu
 
   def show_avalible_decades
     decades = db.execute(sql.query_all_decades)
-    puts "Década/Ano - Número de Habitantes".yellow
+    puts 'Década/Ano - Número de Habitantes'.yellow
     decades.each do |decade|
       puts "#{decade[0]}: #{decade[1]}"
     end
@@ -85,7 +78,7 @@ class Menu
     puts "\nPor favor, digite uma opção válida\n".red
     true
   end
-  
+
   private
 
   def db

@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-# Consultas no banco
+# Queries
 class Sql
   def query_all_federatives
     read_file('query_all_federatives.sql')

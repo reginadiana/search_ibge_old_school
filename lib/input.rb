@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
+# Inputs to Menu
 class Input
-
   def read_number
     gets.to_i
   end
@@ -40,7 +40,7 @@ class Input
       input
     end
   end
-  
+
   def clear
     system('clear')
     puts

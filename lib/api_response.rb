@@ -1,9 +1,7 @@
 # frozen_string_literal: true
 
-require_relative 'menu'
-
+# Show response of request api
 class APIResponse
-
   def show_most_used(response, total_population)
     response.each do |items|
       items[:res].each do |item|
@@ -21,7 +19,7 @@ class APIResponse
         decade = decade(item[:periodo])
         total_population_of_decade = menu.call_population(decade)
         porcentage = calc_porcentage(item[:frequencia], total_population_of_decade, 4)
-        period =  format_period(item[:periodo])
+        period = format_period(item[:periodo])
         puts "#{period} #{item[:frequencia]} - #{porcentage} %"
       end
     end
@@ -43,9 +41,9 @@ class APIResponse
     return begin_decade unless end_to_decade
 
     end_to_decade
-  end 
+  end
 
   def calc_porcentage(frequence, total_population, houses)
-    (frequence.to_f/total_population.to_f).round(houses)
+    (frequence / total_population).to_f.round(houses)
   end
 end

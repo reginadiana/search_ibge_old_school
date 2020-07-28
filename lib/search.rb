@@ -2,6 +2,14 @@
 
 require 'io/console'
 require 'colorize'
+require 'sqlite3'
+require 'faraday'
+require 'json'
+
+require_relative 'api_response'
+require_relative 'sql'
+require_relative 'api'
+require_relative 'input'
 require_relative 'menu'
 
 menu = Menu.new

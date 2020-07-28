@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-# Classe para arquivo csv
+# File manipulation
 class FileParser
   def open_files
     return unless check_file_exit('new_federatives') && check_file_exit('new_counties')
