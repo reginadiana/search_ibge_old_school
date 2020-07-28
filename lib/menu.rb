@@ -28,14 +28,17 @@ class Menu
   def response_consult(option)
     if option == COMMON_NAMES_IN_UF
       show_avalible_ufs
-      decorate
+      decorate(60)
       common_names(input.insert_uf, sql.query_info_federatives)
     elsif option == COMMON_NAMES_IN_COUNTY
-      decorate
+      decorate(60)
       common_names(input.insert_county, sql.query_info_counties)
-    else option == FREQUENTY_NAMES
+    elsif option == FREQUENTY_NAMES
       show_avalible_decades
       api.call_frequence_names(input.insert_names)
+    else option == MOST_USED_DECADE
+      show_avalible_decades
+      api.call_most_used_by_decade(input.insert_decade)
     end
   end
 
@@ -49,9 +52,11 @@ class Menu
 
   def show_avalible_ufs
     ufs = db.execute(sql.query_all_federatives)
-    puts 'Código - Estado - População'
+    decorate(29)
+    puts "Código | População | Estado |"
+    decorate(29)
     ufs.each do |uf|
-      puts "#{uf[1]} - #{uf[2]} - #{uf[3]}"
+      puts "#{uf[1]}\t | #{uf[3]} \t| #{uf[2]}"
     end
   end
 
@@ -59,7 +64,7 @@ class Menu
     decades = db.execute(sql.query_all_decades)
     puts 'Década/Ano - Número de Habitantes'.yellow
     decades.each do |decade|
-      puts "#{decade[0]}: #{decade[1]}"
+      puts "#{decade[0]}: \r#{decade[1]}"
     end
     puts "\n"
   end
@@ -97,7 +102,7 @@ class Menu
     Input.new
   end
 
-  def decorate
-    puts '-' * 60
+  def decorate(amount)
+    puts '-' * amount
   end
 end

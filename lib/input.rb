@@ -19,15 +19,15 @@ class Input
 
   def insert_names
     print "Digite um nome ou vários separados por vírgulas, exemplo:\n"
-    print "Para um nome, digite: Diana\n"
-    print "Para vários nomes, digite: Diana, João, Camilo, Luiz\n"
+    print "Para um nome, digite: Diana\n".yellow
+    print "Para vários nomes, digite: Diana, João, Camilo, Luiz\n".yellow
 
     separate_names(read_input)
   end
 
   def insert_decade
-    print "\nDigite uma década (exemplo: '50') ou ano (exemplo: '1950'):\n"
-    read_number
+    print "\nDigite um ano (exemplo: '1950'):\n"
+    read_input
   end
 
   private

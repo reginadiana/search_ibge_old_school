@@ -11,7 +11,6 @@ class API
   end
 
   def call_most_used(state, total_population)
-    puts 'Ranking - Nome - Frequência - Representavidade no Estado'.green
     puts 'Sexo Feminino'.green
     most_used(state, 'f', total_population)
     puts 'Sexo Masculino'.green
@@ -32,6 +31,21 @@ class API
     response_api.show_most_used(response, total_population)
   end
 
+  def call_most_used_by_decade(decade)
+    puts 'Sexo Feminino'.green
+    most_used_by_decade(decade, 'f')
+    puts 'Sexo Masculino'.green
+    most_used_by_decade(decade, 'm')
+    puts 'Ambos os sexos'.green
+    most_used_by_decade(decade, 'both')
+  end
+
+  def most_used_by_decade(decade, sex)
+    url = url_most_used_by_decade(decade, sex)
+    response = requisition(url)
+    response_api.show_most_used_by_decade(response, decade)
+  end
+
   private
 
   def response_api
@@ -48,5 +62,9 @@ class API
 
   def url_frequence(names)
     url_base + "censos/nomes/#{names}"
+  end
+
+  def url_most_used_by_decade(decade, sex)
+    url_base + "censos/nomes/ranking/?decada=#{decade}&sexo=#{sex}"
   end
 end

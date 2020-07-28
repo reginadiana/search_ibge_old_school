@@ -3,16 +3,17 @@
 # Show response of request api
 class APIResponse
   def show_most_used(response, total_population)
+    puts 'Ranking | Nome | Frequência | Representavidade no Estado'.yellow
     response.each do |items|
       items[:res].each do |item|
-        porcentage = calc_porcentage(item[:frequencia], total_population, 2)
-        puts "#{item[:ranking]}° #{item[:nome]} - #{item[:frequencia]} - #{porcentage} %"
+        porcentage = calc_porcentage(item[:frequencia], total_population, 4)
+        puts "#{item[:ranking]}° #{item[:nome].capitalize} - #{item[:frequencia]} - #{porcentage} %"
       end
     end
   end
 
   def show_frequence_names(response)
-    puts 'Periodo - Frequência - Representavidade no Brasil'.yellow
+    puts 'Periodo | Frequência | Representavidade no Brasil'.yellow
     response.each do |items|
       puts "\nNome: #{items[:nome].capitalize}\n"
       items[:res].each do |item|
@@ -20,7 +21,16 @@ class APIResponse
         total_population_of_decade = menu.call_population(decade)
         porcentage = calc_porcentage(item[:frequencia], total_population_of_decade, 4)
         period = format_period(item[:periodo])
-        puts "#{period} #{item[:frequencia]} - #{porcentage} %"
+        puts "#{period} | #{item[:frequencia]} | #{porcentage} %"
+      end
+    end
+  end
+
+  def show_most_used_by_decade(response, decade)
+    puts "Ranking - Nome - Frequência - Decada (#{decade})".yellow
+    response.each do |items|
+      items[:res].each do |item|
+        puts "#{item[:ranking]}° #{item[:nome].capitalize} - #{item[:frequencia]}"
       end
     end
   end
@@ -44,6 +54,6 @@ class APIResponse
   end
 
   def calc_porcentage(frequence, total_population, houses)
-    (frequence / total_population).to_f.round(houses)
+    (frequence.to_f / total_population.to_f).round(houses)
   end
 end
