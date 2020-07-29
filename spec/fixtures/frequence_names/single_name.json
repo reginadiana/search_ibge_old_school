@@ -1,0 +1,45 @@
+[
+  {
+    "nome": "DIANA",
+    "sexo": null,
+    "localidade": "BR",
+    "res": [
+      {
+        "periodo": "1930[",
+        "frequencia": 88
+      },
+      {
+        "periodo": "[1930,1940[",
+        "frequencia": 227
+      },
+      {
+        "periodo": "[1940,1950[",
+        "frequencia": 899
+      },
+      {
+        "periodo": "[1950,1960[",
+        "frequencia": 1741
+      },
+      {
+        "periodo": "[1960,1970[",
+        "frequencia": 3262
+      },
+      {
+        "periodo": "[1970,1980[",
+        "frequencia": 12915
+      },
+      {
+        "periodo": "[1980,1990[",
+        "frequencia": 25383
+      },
+      {
+        "periodo": "[1990,2000[",
+        "frequencia": 21789
+      },
+      {
+        "periodo": "[2000,2010[",
+        "frequencia": 8643
+      }
+    ]
+  }
+]

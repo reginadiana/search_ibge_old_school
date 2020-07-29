@@ -31,8 +31,6 @@ class Input
     read_input
   end
 
-  private
-
   def separate_names(input)
     if input.include?(',')
       names = input.split(',').join('%7C')
@@ -41,6 +39,8 @@ class Input
       input
     end
   end
+
+  private
 
   def accent_alert 
     puts "For favor, não use acentos na pesquisa, ok?\n".yellow

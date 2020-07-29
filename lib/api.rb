@@ -47,6 +47,10 @@ class Api
     url_base + "censos/nomes/ranking?localidade=#{state}&sexo=#{sex}"
   end
 
+  def url_frequence(names)
+    url_base + "censos/nomes/#{names}"
+  end
+
   private
 
   def response_api
@@ -59,10 +63,6 @@ class Api
 
   def url_base
     'https://servicodados.ibge.gov.br/api/v2/'
-  end
-
-  def url_frequence(names)
-    url_base + "censos/nomes/#{names}"
   end
 
   def url_most_used_by_decade(decade, sex)
