@@ -1,0 +1,108 @@
+[
+  {
+    "localidade": "3547809",
+    "sexo": "m",
+    "res": [
+      {
+        "nome": "JOSE",
+        "frequencia": 16906,
+        "ranking": 1
+      },
+      {
+        "nome": "JOAO",
+        "frequencia": 8081,
+        "ranking": 2
+      },
+      {
+        "nome": "ANTONIO",
+        "frequencia": 7598,
+        "ranking": 3
+      },
+      {
+        "nome": "CARLOS",
+        "frequencia": 5117,
+        "ranking": 4
+      },
+      {
+        "nome": "PAULO",
+        "frequencia": 4788,
+        "ranking": 5
+      },
+      {
+        "nome": "LUCAS",
+        "frequencia": 4510,
+        "ranking": 6
+      },
+      {
+        "nome": "MARCOS",
+        "frequencia": 4308,
+        "ranking": 7
+      },
+      {
+        "nome": "PEDRO",
+        "frequencia": 4303,
+        "ranking": 8
+      },
+      {
+        "nome": "LUIZ",
+        "frequencia": 4240,
+        "ranking": 9
+      },
+      {
+        "nome": "GABRIEL",
+        "frequencia": 4143,
+        "ranking": 10
+      },
+      {
+        "nome": "RAFAEL",
+        "frequencia": 3815,
+        "ranking": 11
+      },
+      {
+        "nome": "MARCELO",
+        "frequencia": 3557,
+        "ranking": 12
+      },
+      {
+        "nome": "FELIPE",
+        "frequencia": 3391,
+        "ranking": 13
+      },
+      {
+        "nome": "EDUARDO",
+        "frequencia": 3314,
+        "ranking": 14
+      },
+      {
+        "nome": "BRUNO",
+        "frequencia": 3239,
+        "ranking": 15
+      },
+      {
+        "nome": "GUSTAVO",
+        "frequencia": 3177,
+        "ranking": 16
+      },
+      {
+        "nome": "FRANCISCO",
+        "frequencia": 3160,
+        "ranking": 17
+      },
+      {
+        "nome": "RODRIGO",
+        "frequencia": 3155,
+        "ranking": 18
+      },
+      {
+        "nome": "GUILHERME",
+        "frequencia": 3146,
+        "ranking": 19
+      },
+      {
+        "nome": "ANDRE",
+        "frequencia": 3033,
+        "ranking": 20
+      }
+    ]
+  }
+]
