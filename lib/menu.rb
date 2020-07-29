@@ -63,9 +63,11 @@ class Menu
 
   def show_avalible_decades
     decades = db.execute(sql.query_all_decades)
-    puts 'Década/Ano - Número de Habitantes'.yellow
+    decorate(35)
+    puts 'Década/Ano | Número de Habitantes |'.yellow
+    decorate(35)
     decades.each do |decade|
-      puts "#{decade[0]}: \r#{decade[1]}"
+      puts "#{decade[0]} | #{decade[1]}"
     end
     puts "\n"
   end
@@ -86,6 +88,10 @@ class Menu
     true
   end
 
+  def decorate(amount)
+    puts '-' * amount
+  end
+
   private
 
   def db
@@ -104,7 +110,4 @@ class Menu
     Input.new
   end
 
-  def decorate(amount)
-    puts '-' * amount
-  end
 end

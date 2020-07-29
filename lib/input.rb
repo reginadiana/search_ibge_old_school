@@ -20,7 +20,8 @@ class Input
   def insert_names
     print "Digite um nome ou vários separados por vírgulas, exemplo:\n"
     print "Para um nome, digite: Diana\n".yellow
-    print "Para vários nomes, digite: Diana, João, Camilo, Luiz\n".yellow
+    print "Para vários nomes, digite: Diana, Joao, Camilo, Luiz\n".yellow
+    print "Por favor, não use acentos =)\n".yellow
 
     separate_names(read_input)
   end
@@ -39,6 +40,10 @@ class Input
     else
       input
     end
+  end
+
+  def accent_alert 
+    puts "For favor, não use acentos na pesquisa, ok?\n".yellow
   end
 
   def clear
