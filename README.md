@@ -115,13 +115,8 @@ $ ruby lib/search.rb
 
 2. Se escolher a **opção 1**, uma tabela com os estados é mostrada e após **digitar um código ou nome do estado**, um ranking com os nomes aparecem.
 
-<p align="center">
-  <img src="https://user-images.githubusercontent.com/46378210/88746305-a37a0e80-d122-11ea-92f8-51c07324961e.png" width="500" alt="Menu de Pesquisa"/>
-</p>
-
-<p align="center">
-  <img src="https://user-images.githubusercontent.com/46378210/88746288-99581000-d122-11ea-8fb0-6d57027ed488.png" width="500" alt="Menu de Pesquisa"/>
-</p>
+| ![](https://user-images.githubusercontent.com/46378210/88746305-a37a0e80-d122-11ea-92f8-51c07324961e.png) | ![](https://user-images.githubusercontent.com/46378210/88746288-99581000-d122-11ea-8fb0-6d57027ed488.png) |
+| :-----: | :-----:  |
 
 3. Para a **opção 2**, o processo é semelhante, porém os dados dependem no **nome do municipio e do estado em parenteses**. 
 
