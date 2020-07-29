@@ -58,7 +58,7 @@ class Api
   private
 
   def response_api
-    APIResponse.new
+    ApiResponse.new
   end
 
   def menu

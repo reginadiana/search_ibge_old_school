@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 # Show response of request api
-class APIResponse
+class ApiResponse
   def show_most_used(response, total_population)
     menu.decorate(58)
     puts 'Ranking | Frequência | Representavidade no Estado | Nome |'.yellow
