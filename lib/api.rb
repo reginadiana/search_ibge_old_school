@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 # Request to data of api
-class API
+class Api
   def requisition(url)
     response = Faraday.get(url)
 
@@ -11,11 +11,8 @@ class API
   end
 
   def call_most_used(state, total_population)
-    puts 'Sexo Feminino'.green
     most_used(state, 'f', total_population)
-    puts 'Sexo Masculino'.green
     most_used(state, 'm', total_population)
-    puts 'Ambos os sexos'.green
     most_used(state, 'both', total_population)
   end
 
@@ -32,18 +29,22 @@ class API
   end
 
   def call_most_used_by_decade(decade)
-    puts 'Sexo Feminino'.green
     most_used_by_decade(decade, 'f')
-    puts 'Sexo Masculino'.green
     most_used_by_decade(decade, 'm')
-    puts 'Ambos os sexos'.green
     most_used_by_decade(decade, 'both')
   end
 
   def most_used_by_decade(decade, sex)
     url = url_most_used_by_decade(decade, sex)
     response = requisition(url)
+    
+    return menu.search_not_found if response == []
+
     response_api.show_most_used_by_decade(response, decade)
+  end
+
+  def url_most_used(state, sex)
+    url_base + "censos/nomes/ranking?localidade=#{state}&sexo=#{sex}"
   end
 
   private
@@ -52,12 +53,12 @@ class API
     APIResponse.new
   end
 
-  def url_base
-    'https://servicodados.ibge.gov.br/api/v2/'
+  def menu
+    Menu.new
   end
 
-  def url_most_used(state, sex)
-    url_base + "censos/nomes/ranking?localidade=#{state}&sexo=#{sex}"
+  def url_base
+    'https://servicodados.ibge.gov.br/api/v2/'
   end
 
   def url_frequence(names)

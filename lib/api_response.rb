@@ -39,7 +39,6 @@ class APIResponse
       items[:res].each do |item|
         puts "#{item[:ranking]}° \t | #{item[:frequencia]} | #{item[:nome].capitalize}"
       end
-    menu.decorate(45)
     end
   end
 

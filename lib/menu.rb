@@ -78,7 +78,6 @@ class Menu
 
   def search_not_found
     puts 'Não foi possível encontrar os dados'.red
-    puts 'Por favor, digite um código ou nome válidos'.red
   end
 
   def check_invalidation_option(option)
@@ -103,7 +102,7 @@ class Menu
   end
 
   def api
-    API.new
+    Api.new
   end
 
   def input

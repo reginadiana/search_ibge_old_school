@@ -7,7 +7,7 @@ class Input
   end
 
   def insert_uf
-    print 'Digite o código da UF:'
+    print "Digite o código ou nome (incluindo acentos, se houver) da UF:\n"
     read_input
   end
 
@@ -27,7 +27,7 @@ class Input
   end
 
   def insert_decade
-    print "\nDigite um ano (exemplo: '1950'):\n"
+    print "\nDigite um ano disponível na tabela (exemplo: '1950'):\n"
     read_input
   end
 
