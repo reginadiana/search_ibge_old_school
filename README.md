@@ -108,8 +108,14 @@ $ ruby lib/search.rb
 ## Como pesquisar pelos dados :mag_right:
 
 <p align="center">
-  <img src="" width="600" alt="Menu de Pesquisa"/>
+  <img src="https://user-images.githubusercontent.com/46378210/88745332-29488a80-d120-11ea-8cee-7285689fd5c2.png" width="600" alt="Menu de Pesquisa"/>
 </p>
+
+1. Acesse o menu e escolha uma opção. 
+2. Se escolher a opção 1, uma tabela com os estados é mostrada e após **digitar um código ou nome do estado**, um ranking com os nomes aparecem.
+3. Para a opção 2, o processo é semelhante, porém os dados dependem no **nome do municipio e do estado em parenteses**. 
+4. Para a opção 3, é necessário escrever um ou mais nomes separados por vírgula, retornando um tabela com o histórico da frequencia daquele nome entre os anos 30 e 2010. 
+5. Para a opção 4, é necessário digitar um ano entre 30 e 2010, retornando os nomes femininos e masculinos mais usados.  
 
 ## Executando os testes :memo:
 
