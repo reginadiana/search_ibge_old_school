@@ -2,10 +2,12 @@
 
 # Options
 EXIT = 0
-COMMON_NAMES_IN_UF = 1
-COMMON_NAMES_IN_COUNTY = 2
+COMMON_NAMES_UF = 1
+COMMON_NAMES_COUNTY = 2
 FREQUENTY_NAMES = 3
 MOST_USED_DECADE = 4
+SHOW_UFS = 5
+SHOW_DECADES = 6
 
 # Show options to user
 class Menu
@@ -15,30 +17,47 @@ class Menu
 
   def show
     print "\nMenu:\n".yellow
-    puts "[#{COMMON_NAMES_IN_UF}] Ver nomes mais comuns de uma Unidade Federativa (UF)".yellow
-    puts "[#{COMMON_NAMES_IN_COUNTY}] Ver nomes mais comuns de um municipio".yellow
-    puts "[#{FREQUENTY_NAMES}] Ver frequência de um nome ao longo dos anos".yellow
-    puts "[#{MOST_USED_DECADE}] Ver nomes mais usados em uma década".yellow
-    puts "[#{EXIT}] Sair".yellow
+    options
+    input.choice_option
+  end
 
-    print 'Escolha uma opção: '
-    input.read_number
+  def options
+    puts "[#{COMMON_NAMES_UF}] Nomes mais comuns de uma UF".yellow
+    puts "[#{COMMON_NAMES_COUNTY}] Nomes mais comuns de um municipio".yellow
+    puts "[#{FREQUENTY_NAMES}] Frequência de um nome ao longo dos anos".yellow
+    puts "[#{MOST_USED_DECADE}] Nomes mais usados em uma década".yellow
+    puts "[#{SHOW_UFS}] Ver UF's disponíveis".yellow
+    puts "[#{SHOW_DECADES}] Decadas disponíveis".yellow
+    puts "[#{EXIT}] Sair".yellow
   end
 
   def response_consult(option)
-    if option == COMMON_NAMES_IN_UF
-      show_avalible_ufs
-      decorate(60)
+    to_common_names(option)
+    to_frequence_names(option)
+    to_show_info(option)
+  end
+
+  def to_common_names(option)
+    if option == COMMON_NAMES_UF
       common_names(input.insert_uf, sql.query_info_federatives)
-    elsif option == COMMON_NAMES_IN_COUNTY
-      decorate(60)
+    elsif option == COMMON_NAMES_COUNTY
       common_names(input.insert_county, sql.query_info_counties)
-    elsif option == FREQUENTY_NAMES
-      show_avalible_decades
+    end
+  end
+
+  def to_frequence_names(option)
+    if option == FREQUENTY_NAMES
       api.call_frequence_names(input.insert_names)
-    else option == MOST_USED_DECADE
-      show_avalible_decades
+    elsif option == MOST_USED_DECADE
       api.call_most_used_by_decade(input.insert_decade)
+    end
+  end
+
+  def to_show_info(option)
+    if option == SHOW_UFS
+      show_avalible_ufs
+    elsif option == SHOW_DECADES
+      show_avalible_decades
     end
   end
 
@@ -54,7 +73,7 @@ class Menu
   def show_avalible_ufs
     ufs = db.execute(sql.query_all_federatives)
     decorate(29)
-    puts "Código | População | Estado |"
+    puts 'Código | População | Estado |'
     decorate(29)
     ufs.each do |uf|
       puts "#{uf[1]}\t | #{uf[3]} \t| #{uf[2]}"
@@ -81,7 +100,7 @@ class Menu
   end
 
   def check_invalidation_option(option)
-    return unless option.negative? || option > 4
+    return unless option.negative? || option > 6
 
     puts "\nPor favor, digite uma opção válida\n".red
     true
@@ -108,5 +127,4 @@ class Menu
   def input
     Input.new
   end
-
 end

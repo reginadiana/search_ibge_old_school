@@ -4,13 +4,12 @@ require 'spec_helper'
 
 describe Api do
   api = Api.new
+  url = 'https://servicodados.ibge.gov.br/api/v2/'
 
   context 'should get history of' do
     it 'a single name' do
       json = File.read('spec/fixtures/frequence_names/single_name.json')
-      url = api.url_frequence('diana')
-      response = double('faraday_response', body: json, status: 200)
-      allow(Faraday).to receive(:get).with(url).and_return(response)
+      stub_request(:get, url).to_return(status: 200, body: json)
       result = api.requisition(url)
 
       expect(result[0][:res].length).to eq 9
@@ -24,11 +23,9 @@ describe Api do
     end
 
     it 'empty name and return empty array' do
-      url = api.url_frequence('')
-      response = double('faraday_response', body: '{}', status: 500)
-      allow(Faraday).to receive(:get).with(url).and_return(response)
-
+      stub_request(:get, url).to_return(status: 500, body: '{}')
       result = api.requisition(url)
+
       expect(result.length).to eq 0
     end
   end

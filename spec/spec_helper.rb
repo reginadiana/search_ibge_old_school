@@ -4,6 +4,8 @@ require 'active_support/all'
 require 'faraday'
 PROJECT_ROOT = File.expand_path('..', __dir__)
 
+require 'webmock/rspec'
+
 Dir.glob(File.join(PROJECT_ROOT, 'lib', '*.rb')).each do |file|
   autoload File.basename(file, '.rb').camelize, file
 end

@@ -37,7 +37,7 @@ class Api
   def most_used_by_decade(decade, sex)
     url = url_most_used_by_decade(decade, sex)
     response = requisition(url)
-    
+
     return menu.search_not_found if response == []
 
     response_api.show_most_used_by_decade(response, decade)

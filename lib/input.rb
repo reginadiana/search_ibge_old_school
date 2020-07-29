@@ -2,6 +2,11 @@
 
 # Inputs to Menu
 class Input
+  def choice_option
+    print 'Escolha uma opção: '
+    read_number
+  end
+
   def read_number
     gets.to_i
   end
@@ -31,6 +36,8 @@ class Input
     read_input
   end
 
+  private
+
   def separate_names(input)
     if input.include?(',')
       names = input.split(',').join('%7C')
@@ -40,9 +47,7 @@ class Input
     end
   end
 
-  private
-
-  def accent_alert 
+  def accent_alert
     puts "For favor, não use acentos na pesquisa, ok?\n".yellow
   end
 

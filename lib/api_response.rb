@@ -3,29 +3,20 @@
 # Show response of request api
 class ApiResponse
   def show_most_used(response, total_population)
-    menu.decorate(58)
-    puts 'Ranking | Frequência | Representavidade no Estado | Nome |'.yellow
-    menu.decorate(58)
+    header_most_used
     response.each do |items|
       items[:res].each do |item|
-        porcentage = calc_porcentage(item[:frequencia], total_population, 4)
-        puts "#{item[:ranking]}° \t| #{item[:frequencia]} | #{porcentage} % | \t#{item[:nome].capitalize}"
+        line_most_used(item, total_population)
       end
     end
   end
 
   def show_frequence_names(response)
-    menu.decorate(49)
-    puts 'Periodo | Frequência | Representavidade no Brasil'.yellow
-    menu.decorate(49)
+    header_frequence_names
     response.each do |items|
       puts "Nome: #{items[:nome].capitalize}"
       items[:res].each do |item|
-        decade = decade(item[:periodo])
-        total_population_of_decade = menu.call_population(decade)
-        porcentage = calc_porcentage(item[:frequencia], total_population_of_decade, 4)
-        period = format_period(item[:periodo])
-        puts "#{period} | #{item[:frequencia]} | #{porcentage} %"
+        line_frequence_names(item)
       end
       menu.decorate(39)
     end
@@ -44,6 +35,31 @@ class ApiResponse
 
   private
 
+  def line_most_used(item, total_population)
+    porcentage = calc_porcentage(item[:frequencia].to_f, total_population.to_f, 4)
+    puts "#{item[:ranking]}° \t| #{item[:frequencia]} | #{porcentage} % | \t#{item[:nome].capitalize}"
+  end
+
+  def line_frequence_names(item)
+    decade = decade(item[:periodo])
+    total_population_of_decade = menu.call_population(decade)
+    porcentage = calc_porcentage(item[:frequencia].to_f, total_population_of_decade.to_f, 4)
+    period = format_period(item[:periodo])
+    puts "#{period} | #{item[:frequencia]} | #{porcentage} %"
+  end
+
+  def header_most_used
+    menu.decorate(58)
+    puts 'Ranking | Frequência | Representavidade no Estado | Nome |'.yellow
+    menu.decorate(58)
+  end
+
+  def header_frequence_names
+    menu.decorate(49)
+    puts 'Periodo | Frequência | Representavidade no Brasil'.yellow
+    menu.decorate(49)
+  end
+
   def menu
     Menu.new
   end
@@ -61,6 +77,6 @@ class ApiResponse
   end
 
   def calc_porcentage(frequence, total_population, houses)
-    (frequence.to_f / total_population.to_f).round(houses)
+    (frequence / total_population).round(houses)
   end
 end
