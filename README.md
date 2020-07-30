@@ -102,7 +102,7 @@ $ bin/setup
 ```
 Para abrir o menu:
 ```
-$ ruby lib/search.rb
+$ ruby lib/index.rb
 ```
 
 ## Como pesquisar pelos dados :mag_right:
