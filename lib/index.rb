@@ -14,8 +14,6 @@ require_relative 'api'
 require_relative 'input'
 require_relative 'expection_message'
 
-DB = SQLite3::Database.open 'db/database.db'
-
 options = Options.new
 menu = Menu.new
 expect = ExceptionMessages.new

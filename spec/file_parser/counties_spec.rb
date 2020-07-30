@@ -16,4 +16,4 @@ describe FileParser do
     first_line = FileParser.new.open_county_file[0]
     expect(first_line).to eq "MU,1100015,Alta Floresta D'Oeste (RO),22945\n"
   end
-end\
+end
