@@ -48,7 +48,7 @@
 
 ## Principais tasks do projeto
 
-:pushpin: Consultas na [API]()
+:pushpin: Consultas na [API](https://servicodados.ibge.gov.br/api/docs/censos/nomes?versao=2#:~:text=A%20API%20distingue%20nomes%20diferenciados,Antonio%20s%C3%A3o%20contabilizados%20como%20Antonio.)
 
 :pushpin: Manipulação de arquivos csv e banco de dados 
 
@@ -70,7 +70,6 @@
 
 :books: &nbsp; [**Colorize**](https://github.com/fazibear/colorize) para deixar o menu mais intuitivo e melhorar a usabilidade. 
 
-:books: &nbsp; [**Faker**](https://github.com/faker-ruby/faker/blob/master/doc/default/address.md) para gerar nomes de municipios e Uf's aleatórios nos testes.
 
 ## Pré-Requisitos :package:
 
@@ -102,7 +101,7 @@ $ bin/setup
 ```
 Para abrir o menu:
 ```
-$ ruby lib/search.rb
+$ ruby lib/index.rb
 ```
 
 ## Como pesquisar pelos dados :mag_right:
