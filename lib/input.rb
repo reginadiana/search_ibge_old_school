@@ -43,7 +43,7 @@ class Input
       names = input.split(',').join('%7C')
       names.gsub!(/\s+/, '')
     else
-      input
+      input.gsub!(/\s+/, '')
     end
   end
 
