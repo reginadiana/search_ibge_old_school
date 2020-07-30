@@ -49,7 +49,7 @@ class Menu
     if option == FREQUENTY_NAMES
       api.call_frequence_names(input.insert_names)
     elsif option == MOST_USED_DECADE
-      api.call_most_used_by_decade(input.insert_decade)
+      most_used_decade
     end
   end
 
@@ -59,6 +59,14 @@ class Menu
     elsif option == SHOW_DECADES
       show_avalible_decades
     end
+  end
+
+  def most_used_decade
+    decade = sql.call_query(input.insert_decade, sql.query_some_population_by_decade, db)
+    
+    return search_not_found unless decade
+    
+    api.call_most_used_by_decade(decade[0])
   end
 
   def common_names(region, query)

@@ -12,7 +12,7 @@ class Input
   end
 
   def insert_uf
-    print "Digite o código ou nome (incluindo acentos, se houver) da UF:\n"
+    print "Digite o código, sigla ou nome (incluindo acentos, se houver) da UF:\n"
     sql.aply_like_after(read_input)
   end
 
@@ -32,8 +32,8 @@ class Input
   end
 
   def insert_decade
-    print "\nDigite um ano disponível na tabela (exemplo: '1950'):\n"
-    read_input
+    print "\nDigite um ano ou década disponível na tabela (exemplo: '1950' ou '50'):\n"
+    sql.aply_like_before(read_input)
   end
 
   private

@@ -1,1 +1,1 @@
-SELECT Amount FROM Population WHERE Year LIKE:parm
+SELECT * FROM Population WHERE Year LIKE:parm
