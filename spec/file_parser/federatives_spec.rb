@@ -14,7 +14,7 @@ describe FileParser do
   end
   it 'Checks if exit 4 columns ' do
     first_line = FileParser.new.open_federative_file[0]
-    expect(first_line).to eq "UF,11,Rondônia,1777225\n"
+    expect(first_line).to eq "UF,11,Rondônia,1777225,RO\n"
   end
   it 'Checks if the sum of the population of each municipality corresponds to the total in Brazil' do
     total_population = FileParser.new.total_population_brazil

@@ -40,6 +40,18 @@ class Sql
     response.next
   end
 
+  def aply_like_after(param)
+    param + '%'
+  end
+
+  def aply_like_before(param)
+    '%' + param
+  end
+
+  def aply_double_like(param)
+    '%' + param + '%'
+  end
+
   private
 
   def read_file(file)

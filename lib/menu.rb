@@ -72,11 +72,11 @@ class Menu
 
   def show_avalible_ufs
     ufs = db.execute(sql.query_all_federatives)
-    decorate(29)
-    puts 'Código | População | Estado |'
-    decorate(29)
+    decorate(37)
+    puts 'Código | Sigla | População | Estado |'
+    decorate(37)
     ufs.each do |uf|
-      puts "#{uf[1]}\t | #{uf[3]} \t| #{uf[2]}"
+      puts "#{uf[1]}\t | #{uf[4].split[0]} \t| #{uf[3]} \t| #{uf[2]}  "
     end
   end
 

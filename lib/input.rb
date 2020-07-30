@@ -13,7 +13,7 @@ class Input
 
   def insert_uf
     print "Digite o código ou nome (incluindo acentos, se houver) da UF:\n"
-    read_input
+    sql.aply_like_after(read_input)
   end
 
   def insert_county
@@ -58,5 +58,9 @@ class Input
 
   def read_input
     gets.chomp
+  end
+
+  def sql
+    Sql.new
   end
 end

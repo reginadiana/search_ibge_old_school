@@ -7,14 +7,19 @@ describe Sql do
   db = SQLite3::Database.open 'db/database.db'
   sql = Sql.new
 
-  context('Search by table federatives and get') do
-    it 'population of same UF by name' do
+  context('makes a query in table Federatives and returns the population by') do
+    it 'name' do
       param = 'São Paulo'
       population = sql.call_query(param, sql.query_population_federatives, db).join.to_i
       expect(population).to eq 45_919_049
     end
-    it 'population of same UF by code' do
+    it 'code' do
       param = 35
+      population = sql.call_query(param, sql.query_population_federatives, db).join.to_i
+      expect(population).to eq 45_919_049
+    end
+    it 'sigle' do
+      param = sql.aply_like_after('SP')
       population = sql.call_query(param, sql.query_population_federatives, db).join.to_i
       expect(population).to eq 45_919_049
     end

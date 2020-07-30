@@ -14,6 +14,6 @@ describe FileParser do
   end
   it 'Checks if exit 5 columns' do
     first_line = FileParser.new.open_county_file[0]
-    expect(first_line).to eq "MU,1100015,Alta Floresta D'Oeste (RO),22945,RO\n"
+    expect(first_line).to eq "MU,1100015,Alta Floresta D'Oeste (RO),22945\n"
   end
 end\

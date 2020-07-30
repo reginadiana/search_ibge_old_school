@@ -25,7 +25,8 @@ else
         Status varchar(2),
         Code int,
         Title varchar(30),
-        Population int
+        Population int,
+        UF varchar(2)
       );
       SQL
 
@@ -34,8 +35,7 @@ else
         Status varchar(2),
         Code int,
         Title varchar(30),
-        Population int,
-        UF varchar(2)
+        Population int
      );
       SQL
 
@@ -48,14 +48,14 @@ else
 
       federative_csv.each do |dados|
         dados = dados.split(',')
-        db.execute 'INSERT INTO Federatives VALUES ( ?, ?, ?, ? )', dados
+        db.execute 'INSERT INTO Federatives VALUES ( ?, ?, ?, ?, ? )', dados
       end
 
       puts "\n== Table Federative was build with success ==".green
 
       counties_csv.each do |dados|
         dados = dados.split(',')
-        db.execute 'INSERT INTO Counties VALUES ( ?, ?, ?, ?, ? )', dados
+        db.execute 'INSERT INTO Counties VALUES ( ?, ?, ?, ? )', dados
       end
 
       puts "\n== Table Counties was build with success ==".green

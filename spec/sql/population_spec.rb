@@ -7,8 +7,8 @@ describe Sql do
   db = SQLite3::Database.open 'db/database.db'
   sql = Sql.new
 
-  context('all informations of') do
-    it 'table' do
+  context('makes a query in table Population and returns') do
+    it 'all table' do
       result = db.execute(sql.query_all_decades)
 
       expect(result.length).to eq 9
@@ -18,15 +18,14 @@ describe Sql do
       expect(result[3]).to eq [1960, 70_992_343]
     end
     it 'population by decade' do
-      decade = '50'
-      like = '%' + decade
-      population = sql.call_query(like, sql.query_some_population_by_decade, db)[0]
+      param = sql.aply_like_before('50')
+      population = sql.call_query(param, sql.query_some_population_by_decade, db)[0]
 
       expect(population).to eq 51_944_397
     end
     it 'population by year' do
-      year = '1950'
-      population = sql.call_query(year, sql.query_some_population_by_decade, db)[0]
+      param = '1950'
+      population = sql.call_query(param, sql.query_some_population_by_decade, db)[0]
       expect(population).to eq 51_944_397
     end
   end

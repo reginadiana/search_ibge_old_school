@@ -1,10 +1,13 @@
 # frozen_string_literal: true
 
+require 'colorize'
+
 # File manipulation
 class FileParser
   def open_files
-    return unless check_file_exit('new_federatives') && check_file_exit('new_counties')
+    return already_exit unless !check_file_exit('new_federatives') && !check_file_exit('new_counties')
 
+    puts 'Criando arquivos'.green
     federative_csv = create_file('new_federatives')
     counties_csv = create_file('new_counties')
     new_ferefative_file(federative_csv, counties_csv)
@@ -15,21 +18,24 @@ class FileParser
 
     federatives.each do |columns|
       columns_federatives = columns.split(',')
-      federative_csv.puts "#{columns[0, columns.length - 1]}," + new_county_file(counties_csv, columns_federatives).to_s
+      total_population_uf, single = new_county_file(counties_csv, columns_federatives)
+      federative_csv.puts columns[0, columns.length - 1] + ',' + total_population_uf.to_s + ',' + single
     end
   end
 
   def new_county_file(counties_csv, columns_federatives)
     counties = read_each_line('counties')
     total_population_uf = 0
+    sigle = ''
     counties.each do |columns|
       counties_columns = columns.split(',')
       if columns_federatives[1] == code_uf(counties_columns)
         total_population_uf += counties_columns[3].to_i
-        counties_csv.puts "#{columns[0, columns.length - 2]}," + uf_of_county(counties_columns).to_s
+        sigle = uf_of_county(counties_columns).to_s
+        counties_csv.puts columns[0, columns.length - 2]
       end
     end
-    total_population_uf
+    [total_population_uf, sigle]
   end
 
   def uf_of_county(counties_columns)
@@ -76,4 +82,10 @@ class FileParser
   def create_file(file)
     File.new("data/#{file}.csv", 'w')
   end
+
+  def already_exit
+    puts 'Os arquivos csv já foram criados e estão prontos'.yellow
+  end
 end
+
+FileParser.new.open_files
