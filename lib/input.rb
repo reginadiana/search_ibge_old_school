@@ -47,10 +47,6 @@ class Input
     end
   end
 
-  def accent_alert
-    puts "For favor, não use acentos na pesquisa, ok?\n".yellow
-  end
-
   def clear
     system('clear')
     puts

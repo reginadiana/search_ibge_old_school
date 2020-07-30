@@ -29,11 +29,11 @@ class FileParser
     sigle = ''
     counties.each do |columns|
       counties_columns = columns.split(',')
-      if columns_federatives[1] == code_uf(counties_columns)
-        total_population_uf += counties_columns[3].to_i
-        sigle = uf_of_county(counties_columns).to_s
-        counties_csv.puts columns[0, columns.length - 2]
-      end
+      next unless columns_federatives[1] == code_uf(counties_columns)
+
+      total_population_uf += counties_columns[3].to_i
+      sigle = uf_of_county(counties_columns).to_s
+      counties_csv.puts columns[0, columns.length - 2]
     end
     [total_population_uf, sigle]
   end

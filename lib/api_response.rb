@@ -42,7 +42,7 @@ class ApiResponse
 
   def line_frequence_names(item)
     decade = decade(item[:periodo])
-    total_population_of_decade = menu.call_population(decade)
+    total_population_of_decade = options.call_population(decade)
     porcentage = calc_porcentage(item[:frequencia].to_f, total_population_of_decade.to_f, 4)
     period = format_period(item[:periodo])
     puts "#{period} | #{item[:frequencia]} | #{porcentage} %"
@@ -62,6 +62,10 @@ class ApiResponse
 
   def menu
     Menu.new
+  end
+
+  def options
+    Options.new
   end
 
   def format_period(periodo)

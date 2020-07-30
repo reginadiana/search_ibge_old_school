@@ -18,33 +18,18 @@ describe Sql do
       expect(result[3]).to eq [1960, 70_992_343]
     end
     it 'population by decade' do
-      param = sql.aply_like_before('50')
-      population = sql.call_query(param, sql.query_some_population_by_decade, db)[1]
+      population = sql.call_query(sql.aply_like_before('50'), sql.query_some_population_by_decade, db)[1]
 
       expect(population).to eq 51_944_397
     end
     it 'year by decade' do
-      param = sql.aply_like_before('50')
-      population = sql.call_query(param, sql.query_some_population_by_decade, db)[0]
+      population = sql.call_query(sql.aply_like_before('50'), sql.query_some_population_by_decade, db)[0]
 
       expect(population).to eq 1950
     end
     it 'population by year' do
-      param = '1950'
-      population = sql.call_query(param, sql.query_some_population_by_decade, db)[1]
+      population = sql.call_query('1950', sql.query_some_population_by_decade, db)[1]
       expect(population).to eq 51_944_397
     end
   end
-  context('return error when') do
-    it 'seach by year out of range' do
-      param = '1900'
-      response_query = sql.call_query(param, sql.query_some_population_by_decade, db)
-      expect(response_query).to eq nil
-    end
-    it 'seach by decade out of range' do
-      param = '43'
-      response_query = sql.call_query(param, sql.query_some_population_by_decade, db)
-      expect(response_query).to eq nil
-    end
-  end 
 end

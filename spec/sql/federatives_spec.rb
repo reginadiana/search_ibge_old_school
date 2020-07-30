@@ -20,7 +20,6 @@ describe Sql do
       expect(column[1]).to eq 35
       expect(column[2]).to eq 'São Paulo'
       expect(column[3]).to eq 45_919_049
-      expect(column[4]).to eq "SP\n"
     end
     it 'informations by code' do
       param = 35
@@ -30,7 +29,6 @@ describe Sql do
       expect(column[1]).to eq 35
       expect(column[2]).to eq 'São Paulo'
       expect(column[3]).to eq 45_919_049
-      expect(column[4]).to eq "SP\n"
     end
   end
 end
