@@ -106,7 +106,7 @@ $ ruby lib/index.rb
 
 ## Como pesquisar pelos dados :mag_right:
 
-Clique [aqui] para saber como fazer as pesquisas :smile:
+Clique [aqui](https://github.com/reginadiana/search_ibge_old_school/wiki/Como-realizar-as-pesquisas) para saber como fazer as pesquisas :smile:
 
 ## Executando os testes :memo:
 
