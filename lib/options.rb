@@ -42,29 +42,27 @@ class Options
   end
 
   def most_used_decade
-    decade = sql.call_query(input.insert_decade, sql.query_some_population_by_decade, db)
+    response_decade = sql.call_query(input.insert_decade, sql.query_some_population_by_decade, DB)
 
-    return expect.search_not_found unless decade
+    return expect.search_not_found unless response_decade
 
-    api.call_most_used_by_decade(decade[0])
+    menu.header_option_decade(response_decade[0], response_decade[1])
+    api.call_most_used_by_decade(response_decade[0])
   end
 
   def common_names(region, query)
-    response = sql.call_query(region, query, db)
+    response = sql.call_query(region, query, DB)
     return expect.search_not_found unless response
 
+    menu.header_option(response[2], response[3])
     api.call_most_used(response[1], response[3])
   end
 
   def call_population(decade)
-    sql.call_query(decade, sql.query_some_population_by_decade, db)[1]
+    sql.call_query(decade, sql.query_some_population_by_decade, DB)[1]
   end
 
   private
-
-  def db
-    SQLite3::Database.open 'db/database.db'
-  end
 
   def sql
     Sql.new

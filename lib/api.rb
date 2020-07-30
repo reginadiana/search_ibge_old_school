@@ -11,8 +11,11 @@ class Api
   end
 
   def call_most_used(state, total_population)
+    puts "\n\t\t\t\tNomes femininos".colorize(color: :black, background: :white)
     most_used(state, 'f', total_population)
+    puts "\n\t\t\t\tNomes masculinos".colorize(color: :black, background: :white)
     most_used(state, 'm', total_population)
+    puts "\n\t\t\t\tAmbos os sexos".colorize(color: :black, background: :white)
     most_used(state, 'both', total_population)
   end
 
@@ -29,8 +32,11 @@ class Api
   end
 
   def call_most_used_by_decade(decade)
+    puts "\n\t\t\t\tNomes femininos".colorize(color: :black, background: :white)
     most_used_by_decade(decade, 'f')
+    puts "\n\t\t\t\tNomes masculinos".colorize(color: :black, background: :white)
     most_used_by_decade(decade, 'm')
+    puts "\n\t\t\t\tAmbos os sexos".colorize(color: :black, background: :white)
     most_used_by_decade(decade, 'both')
   end
 
@@ -38,7 +44,7 @@ class Api
     url = url_most_used_by_decade(decade, sex)
     response = requisition(url)
 
-    return menu.search_not_found if response == []
+    return expect.search_not_found if response == []
 
     response_api.show_most_used_by_decade(response, decade)
   end
@@ -51,6 +57,10 @@ class Api
 
   def menu
     Menu.new
+  end
+
+  def expect
+    ExceptionMessages.new
   end
 
   def url_base

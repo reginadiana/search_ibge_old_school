@@ -14,7 +14,7 @@ class ApiResponse
   def show_frequence_names(response)
     header_frequence_names
     response.each do |items|
-      puts "Nome: #{items[:nome].capitalize}"
+      puts "Nome: #{items[:nome].capitalize}".colorize(color: :black, background: :white)
       items[:res].each do |item|
         line_frequence_names(item)
       end
@@ -49,23 +49,17 @@ class ApiResponse
   end
 
   def header_most_used
+    puts "\n"
     menu.decorate(58)
     puts 'Ranking | Frequência | Representavidade no Estado | Nome |'.yellow
     menu.decorate(58)
   end
 
   def header_frequence_names
+    puts "\n"
     menu.decorate(49)
     puts 'Periodo | Frequência | Representavidade no Brasil'.yellow
     menu.decorate(49)
-  end
-
-  def menu
-    Menu.new
-  end
-
-  def options
-    Options.new
   end
 
   def format_period(periodo)
@@ -82,5 +76,13 @@ class ApiResponse
 
   def calc_porcentage(frequence, total_population, houses)
     (frequence / total_population).round(houses)
+  end
+
+  def menu
+    Menu.new
+  end
+
+  def options
+    Options.new
   end
 end

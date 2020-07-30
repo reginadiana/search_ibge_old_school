@@ -23,10 +23,10 @@ class Input
   end
 
   def insert_names
-    print "Digite um nome ou vários separados por vírgulas, exemplo:\n"
-    print "Para um nome, digite: Diana\n".yellow
-    print "Para vários nomes, digite: Diana, Joao, Camilo, Luiz\n".yellow
-    print "Por favor, não use acentos =)\n".yellow
+    puts "Digite um nome ou vários separados por vírgulas e não use acentos:\n"
+    puts "\nAjuda:\n".yellow
+    puts 'Para um nome, digite: Diana'
+    puts "Para vários nomes, digite: Diana, Joao, Camilo, Luiz\n\n"
 
     separate_names(read_input)
   end
@@ -43,7 +43,7 @@ class Input
       names = input.split(',').join('%7C')
       names.gsub!(/\s+/, '')
     else
-      input.gsub!(/\s+/, '')
+      input.split[0]
     end
   end
 
@@ -53,6 +53,7 @@ class Input
   end
 
   def read_input
+    print 'Digite: '
     gets.chomp
   end
 

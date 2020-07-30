@@ -12,4 +12,8 @@ class ExceptionMessages
     puts "\nPor favor, digite uma opção válida\n".red
     true
   end
+
+  def alert_bad_request
+    abort('[400] Ops ... algo deu errado, tente escrever novamente.'.yellow)
+  end
 end

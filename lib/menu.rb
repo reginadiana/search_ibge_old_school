@@ -3,7 +3,8 @@
 # Show messages to menu
 class Menu
   def welcome
-    puts 'Bem-vindo a plataforma de pesquisa de nomes IBGE!'.green
+    puts 'Bem-vindo a plataforma de pesquisa de nomes IBGE!'.colorize(color: :black, background: :green)
+    puts 'Digite um número correspondente às opções!'
   end
 
   def show
@@ -13,12 +14,12 @@ class Menu
   end
 
   def options
-    puts "[#{COMMON_NAMES_UF}] Nomes mais comuns de uma UF".yellow
-    puts "[#{COMMON_NAMES_COUNTY}] Nomes mais comuns de um municipio".yellow
-    puts "[#{FREQUENTY_NAMES}] Frequência de um nome ao longo dos anos".yellow
-    puts "[#{MOST_USED_DECADE}] Nomes mais usados em uma década".yellow
-    puts "[#{SHOW_UFS}] Ver UF's disponíveis".yellow
-    puts "[#{SHOW_DECADES}] Decadas disponíveis".yellow
+    puts "[#{COMMON_NAMES_UF}] Consultar nomes mais comuns de uma UF".yellow
+    puts "[#{COMMON_NAMES_COUNTY}] Consultar nomes mais comuns de um municipio".yellow
+    puts "[#{FREQUENTY_NAMES}] Consultar a frequência de um nome ao longo dos anos".yellow
+    puts "[#{MOST_USED_DECADE}] Consultar os nomes mais usados em uma década".yellow
+    puts "[#{SHOW_UFS}] Ver UF's disponíveis".light_blue
+    puts "[#{SHOW_DECADES}] Ver decadas disponíveis".light_blue
     puts "[#{EXIT}] Sair".yellow
   end
 
@@ -41,6 +42,18 @@ class Menu
 
   def decorate(amount)
     puts '-' * amount
+  end
+
+  def header_option(state, population)
+    puts "O estado escolhido foi #{state}. Você sabia que a população é de #{population} de habitantes?"
+      .light_blue
+  end
+
+  def header_option_decade(decade, population)
+    puts "A decada escolhida foi #{decade}. \nVocê sabia que naquela época a população era de #{population} de habitantes?"
+      .light_blue
+    puts 'Quem sabe a gente não encontra os nomes dos seus avós nessas listas?'
+      .light_blue
   end
 
   private
