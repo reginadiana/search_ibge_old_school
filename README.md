@@ -70,7 +70,6 @@
 
 :books: &nbsp; [**Colorize**](https://github.com/fazibear/colorize) para deixar o menu mais intuitivo e melhorar a usabilidade. 
 
-:books: &nbsp; [**Faker**](https://github.com/faker-ruby/faker/blob/master/doc/default/address.md) para gerar nomes de municipios e Uf's aleatórios nos testes.
 
 ## Pré-Requisitos :package:
 
