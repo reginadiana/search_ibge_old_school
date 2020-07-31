@@ -2,7 +2,8 @@
 
 # Show response of request api
 class ApiResponse
-  def show_most_used(response, total_population)
+  def show_most_used(response, total_population, sex)
+    show_sex(sex)
     header_most_used
     response.each do |items|
       items[:res].each do |item|
@@ -22,10 +23,9 @@ class ApiResponse
     end
   end
 
-  def show_most_used_by_decade(response, decade)
-    menu.decorate(45)
-    puts "Ranking | Nome | Frequência | Decada (#{decade}) |".yellow
-    menu.decorate(45)
+  def show_most_used_by_decade(response, decade, sex)
+    show_sex(sex)
+    header_most_used_by_decade(decade)
     response.each do |items|
       items[:res].each do |item|
         puts "#{item[:ranking]}° \t | #{item[:frequencia]} | #{item[:nome].capitalize}"
@@ -34,6 +34,24 @@ class ApiResponse
   end
 
   private
+
+  def show_sex(sex)
+    return message_female if sex == 'f'
+    return message_male if sex == 'm'
+    return message_both if sex == 'both'
+  end
+
+  def message_female
+    puts "\n\t\t\t\tNomes femininos".colorize(color: :black, background: :white)
+  end
+
+  def message_male
+    puts "\n\t\t\t\tNomes masculinos".colorize(color: :black, background: :white)
+  end
+
+  def message_both
+    puts "\n\t\t\t\tAmbos os sexos".colorize(color: :black, background: :white)
+  end
 
   def line_most_used(item, total_population)
     porcentage = calc_porcentage(item[:frequencia].to_f, total_population.to_f, 4)
@@ -60,6 +78,12 @@ class ApiResponse
     menu.decorate(49)
     puts 'Periodo | Frequência | Representavidade no Brasil'.yellow
     menu.decorate(49)
+  end
+
+  def header_most_used_by_decade(decade)
+    menu.decorate(45)
+    puts "Ranking | Nome | Frequência | Decada (#{decade}) |".yellow
+    menu.decorate(45)
   end
 
   def format_period(periodo)

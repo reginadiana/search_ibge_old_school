@@ -47,15 +47,16 @@ class Option
     return expect.search_not_found unless response_decade
 
     menu.header_option_decade(response_decade[0], response_decade[1])
-    api.call_most_used_by_decade(response_decade[0])
+    sexes.each { |sex| api.call_most_used_by_decade(response_decade[0], sex) }
   end
 
   def common_names(region, query)
     response = sql.call_query(region, query, db)
+
     return expect.search_not_found unless response
 
     menu.header_option(response[2], response[3])
-    api.call_most_used(response[1], response[3])
+    sexes.each { |sex| api.call_most_used(response[1], sex, response[3]) }
   end
 
   def call_population(decade)
@@ -63,6 +64,10 @@ class Option
   end
 
   private
+
+  def sexes
+    ['f','m','both']
+  end
 
   def sql
     Sql.new
