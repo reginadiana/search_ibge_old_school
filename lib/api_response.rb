@@ -4,7 +4,7 @@
 class ApiResponse
   def show_most_used(response, total_population, sex)
     show_sex(sex)
-    header_most_used
+    header.most_used
     response.each do |items|
       items[:res].each do |item|
         line_most_used(item, total_population)
@@ -13,19 +13,18 @@ class ApiResponse
   end
 
   def show_frequence_names(response)
-    header_frequence_names
+    header.frequence_names
     response.each do |items|
-      puts "Nome: #{items[:nome].capitalize}".colorize(color: :black, background: :white)
+      puts "\nNome: #{items[:nome].capitalize}".colorize(color: :black, background: :white)
       items[:res].each do |item|
         line_frequence_names(item)
       end
-      menu.decorate(39)
     end
   end
 
   def show_most_used_by_decade(response, decade, sex)
     show_sex(sex)
-    header_most_used_by_decade(decade)
+    header.most_used_by_decade(decade)
     response.each do |items|
       items[:res].each do |item|
         puts "#{item[:ranking]}° \t | #{item[:frequencia]} | #{item[:nome].capitalize}"
@@ -66,26 +65,6 @@ class ApiResponse
     puts "#{period} | #{item[:frequencia]} | #{porcentage} %"
   end
 
-  def header_most_used
-    puts "\n"
-    menu.decorate(58)
-    puts 'Ranking | Frequência | Representavidade no Estado | Nome |'.yellow
-    menu.decorate(58)
-  end
-
-  def header_frequence_names
-    puts "\n"
-    menu.decorate(49)
-    puts 'Periodo | Frequência | Representavidade no Brasil'.yellow
-    menu.decorate(49)
-  end
-
-  def header_most_used_by_decade(decade)
-    menu.decorate(45)
-    puts "Ranking | Nome | Frequência | Decada (#{decade}) |".yellow
-    menu.decorate(45)
-  end
-
   def format_period(periodo)
     periodo.split('[').join.split(',').join(' até ').green
   end
@@ -104,6 +83,10 @@ class ApiResponse
 
   def menu
     Menu.new
+  end
+
+  def header
+    Header.new
   end
 
   def options

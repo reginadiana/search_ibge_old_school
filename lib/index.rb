@@ -13,6 +13,7 @@ require_relative 'sql'
 require_relative 'api'
 require_relative 'input'
 require_relative 'expection_message'
+require_relative 'header'
 
 options = Option.new
 menu = Menu.new

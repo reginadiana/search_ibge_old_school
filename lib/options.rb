@@ -46,7 +46,7 @@ class Option
 
     return expect.search_not_found unless response_decade
 
-    menu.header_option_decade(response_decade[0], response_decade[1])
+    header.option_decade(response_decade[0], response_decade[1])
     sexes.each { |sex| api.call_most_used_by_decade(response_decade[0], sex) }
   end
 
@@ -55,7 +55,7 @@ class Option
 
     return expect.search_not_found unless response
 
-    menu.header_option(response[2], response[3])
+    header.option(response[2], response[3])
     sexes.each { |sex| api.call_most_used(response[1], sex, response[3]) }
   end
 
@@ -71,6 +71,10 @@ class Option
 
   def sql
     Sql.new
+  end
+
+  def header
+    Header.new
   end
 
   def api
