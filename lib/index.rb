@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require_relative 'require'
+require_relative 'require_files'
 
 options = Option.new
 menu = Menu.new
