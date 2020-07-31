@@ -83,6 +83,6 @@ class ApiResponse
   end
 
   def options
-    Options.new
+    Option.new
   end
 end

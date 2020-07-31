@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 # Show messages to exceptions
-class ExceptionMessages
+class ExceptionMessage
   def search_not_found
     puts 'Não foi possível encontrar os dados'.red
   end

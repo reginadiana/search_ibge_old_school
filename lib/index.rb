@@ -14,9 +14,9 @@ require_relative 'api'
 require_relative 'input'
 require_relative 'expection_message'
 
-options = Options.new
+options = Option.new
 menu = Menu.new
-expect = ExceptionMessages.new
+expect = ExceptionMessage.new
 
 menu.welcome
 option = menu.show

@@ -10,7 +10,7 @@ SHOW_UFS = 5
 SHOW_DECADES = 6
 
 # Show options to user
-class Options
+class Option
   def response_consult(option)
     to_common_names(option)
     to_frequence_names(option)
@@ -85,6 +85,6 @@ class Options
   end
 
   def expect
-    ExceptionMessages.new
+    ExceptionMessage.new
   end
 end

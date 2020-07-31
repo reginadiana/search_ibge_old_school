@@ -60,7 +60,7 @@ class Api
   end
 
   def expect
-    ExceptionMessages.new
+    ExceptionMessage.new
   end
 
   def url_base
