@@ -50,7 +50,7 @@ class Api
   end
 
   def url_frequence(names)
-    url_base + "#{names}"
+    url_base + names.to_s
   end
 
   def url_most_used_by_decade(decade, sex)

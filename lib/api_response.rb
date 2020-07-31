@@ -59,7 +59,7 @@ class ApiResponse
 
   def line_frequence_names(item)
     decade = decade(item[:periodo])
-    total_population_of_decade = options.call_population(decade)
+    total_population_of_decade = call_population(decade)
     porcentage = calc_porcentage(item[:frequencia].to_f, total_population_of_decade.to_f, 4)
     period = format_period(item[:periodo])
     puts "#{period} | #{item[:frequencia]} | #{porcentage} %"
@@ -81,6 +81,10 @@ class ApiResponse
     (frequence / total_population).round(houses)
   end
 
+  def call_population(decade)
+    sql.call_query(decade, sql.query_some_population_by_decade, db)[1]
+  end
+
   def menu
     Menu.new
   end
@@ -91,5 +95,13 @@ class ApiResponse
 
   def options
     Option.new
+  end
+
+  def sql
+    Sql.new
+  end
+
+  def db
+    SQLite3::Database.open 'db/database.db'
   end
 end

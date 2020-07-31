@@ -59,14 +59,10 @@ class Option
     sexes.each { |sex| api.call_most_used(response[1], sex, response[3]) }
   end
 
-  def call_population(decade)
-    sql.call_query(decade, sql.query_some_population_by_decade, db)[1]
-  end
-
   private
 
   def sexes
-    ['f','m','both']
+    %w[f m both]
   end
 
   def sql
@@ -90,7 +86,7 @@ class Option
   end
 
   def db
-   SQLite3::Database.open 'db/database.db'
+    SQLite3::Database.open 'db/database.db'
   end
 
   def expect
